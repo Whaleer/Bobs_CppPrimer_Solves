@@ -9,6 +9,10 @@ using namespace std;
 int main(){
 
     vector<int> s;
+    int num;
+    while(cin >> num){
+        s.push_back(num);
+    }
 
     return 0;
 }
