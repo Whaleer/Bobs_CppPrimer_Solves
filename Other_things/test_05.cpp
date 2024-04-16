@@ -8,13 +8,13 @@ using namespace std;
 
 int main() {
     char k = 'L';
-    int count = 0;
+    int num = (int)k;
+    cout << num << endl;
+    cout << "=====" << endl;
     while (k > 3) {
-        printf("%d", k);
+        printf("%d\n", k);
         k = k / 2;
-        count++;
-    }
-    cout << count << endl;
 
+    }
     return 0;
 }
