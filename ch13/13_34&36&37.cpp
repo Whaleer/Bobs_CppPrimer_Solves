@@ -1,12 +1,9 @@
 //
 // Created by Bingxi L on 2024/4/17.
 //
-
-#ifndef CPPPRIMER_13_34_36_37_H
-#define CPPPRIMER_13_34_36_37_H
-
 #include <string>
 #include <set>
+#include <iostream>
 
 using namespace std;
 
@@ -45,6 +42,7 @@ private:
 
 void swap(Message &, Message &);
 
+
 class Folder {
     friend void swap(Folder &, Folder &);
 
@@ -60,7 +58,7 @@ public:
     ~Folder();
 
     void print_debug();
-    
+
 private:
     set<Message *> msgs;
 
@@ -75,5 +73,53 @@ private:
 
 void swap(Folder &, Folder &);
 
+void swap(Message &lhs, Message &rhs) {
+    using std::swap;
+    lhs.remove_from_Folders(); // Use existing member function to avoid duplicate code.
+    rhs.remove_from_Folders(); // Use existing member function to avoid duplicate code.
 
-#endif //CPPPRIMER_13_34_36_37_H
+    swap(lhs.folders, rhs.folders);
+    swap(lhs.contents, rhs.contents);
+
+    lhs.add_to_Folders(lhs); // Use existing member function to avoid duplicate code.
+    rhs.add_to_Folders(rhs); // Use existing member function to avoid duplicate code.
+}
+
+void Message::save(Folder &f) {
+    folders.insert(&f);
+    f.addMsg(this);
+}
+
+void Message::remove(Folder &f) {
+    folders.erase(&f);
+    f.remMsg(this);
+}
+
+void Message::add_to_Folders(const Message &m) {
+    for (auto f: m.folders)
+        f->addMsg(this);
+}
+
+Message::Message(const Message &m) : contents(m.contents), folders(m.folders) {
+    add_to_Folders(m);
+}
+
+void Message::remove_from_Folders() {
+    for (auto f: folders)
+        f->remMsg(this);
+}
+
+Message::~Message() {
+    remove_from_Folders();
+}
+
+
+Message &Message::operator=(const Message &rhs) {
+    remove_from_Folders();
+    contents = rhs.contents;
+    folders = rhs.folders;
+    add_to_Folders(rhs);
+    return *this;
+}
+
+

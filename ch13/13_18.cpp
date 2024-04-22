@@ -1,10 +1,7 @@
 //
 // Created by Bingxi L on 2024/4/16.
 //
-
-#ifndef CPPPRIMER_13_18_H
-#define CPPPRIMER_13_18_H
-
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -23,9 +20,21 @@ private:
     static int s_increment;
 };
 
-int main() {
+int Employee::s_increment = 0;
 
+Employee::Employee() {
+    id_ = s_increment++;
+}
+
+Employee::Employee(const string &name) {
+    id_ = s_increment++;
+    name_ = name;
+}
+
+int main() {
+    return 0;
 }
 
 
-#endif //CPPPRIMER_13_18_H
+
+
