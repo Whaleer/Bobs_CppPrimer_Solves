@@ -10,14 +10,15 @@
 using namespace std;
 using namespace std::placeholders;
 
-bool isLessThan6(const string &s, string::size_type sz) {
+bool isLessthan6(const string &s, string::size_type sz) {
     return s.size() <= sz;
 }
 
 int main() {
 
+    vector<string> s = {"aasdz", "xzc", "ss", "sadasdas", "aasdqwe"};
+    int re = count_if(s.begin(), s.end(), bind(isLessthan6, _1, 6));
+    cout << re << endl;
 
-    vector<string> authors{"moophy", "zezy", "qweSSSasda", "asdass", "sda"};
-    cout << count_if(authors.cbegin(), authors.cend(), bind(isLessThan6, _1, 6));
-
+    return 0;
 }

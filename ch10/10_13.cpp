@@ -23,7 +23,7 @@ int main() {
     cout << endl;
 
 
-    for (auto iter = vec.cbegin(); iter != vec.cend(); iter++) {
+    for (auto iter = end; iter != vec.cend(); iter++) {
         cout << *iter << " ";
     }
     cout << endl;

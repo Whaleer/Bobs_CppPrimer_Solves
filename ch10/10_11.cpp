@@ -7,16 +7,16 @@
 
 using namespace std;
 
-
 bool isShorter(const string &s1, const string &s2) {
     return s1.size() < s2.size();
 }
 
-void elimDups(vector<string> &words) {
-    sort(words.begin(), words.end());
-    auto end_unique = unique(words.begin(), words.end());
-    words.erase(end_unique, words.end());
+void elimDups(vector<string> &vec) {
+    sort(vec.begin(), vec.end());
+    auto unique_end = unique(vec.begin(), vec.end());
+    vec.erase(unique_end, vec.end());
 }
+
 
 int main() {
 
@@ -24,10 +24,9 @@ int main() {
     elimDups(vec);
     stable_sort(vec.begin(), vec.end(), isShorter);
 
-    for(auto & i : vec)
+    for (auto &i: vec)
         cout << i << " ";
     cout << endl;
-
 
     return 0;
 }
