@@ -3,7 +3,6 @@
 //
 #include <string>
 #include <iostream>
-
 using namespace std;
 
 class HasPtr {
@@ -12,12 +11,12 @@ public:
 
     HasPtr(const HasPtr &hp) : ps(new string(*hp.ps)), i(hp.i) {}
 
-    HasPtr &operator=(const HasPtr &rhs_hp) {
-        if (this != &rhs_hp) {
-            string *tmp_ps = new string(*rhs_hp.ps);
+    HasPtr &operator=(const HasPtr &rhs) {
+        if (this != &rhs) {
+            string *tmp_ps = new string(*rhs.ps);
             delete ps;
             ps = tmp_ps;
-            i = rhs_hp.i;
+            i = rhs.i;
         }
         return *this;
     }
@@ -30,6 +29,7 @@ private:
     string *ps;
     int i;
 };
+
 
 int main() {
     /*
