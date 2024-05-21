@@ -23,7 +23,7 @@ public:
     Sales_data(const string &s) : Sales_data(s, 0, 0.0f) {} // 委托构造函数
     Sales_data(istream &is);
 
-    Sales_data &operator=(const Sales_data &);
+    Sales_data &operator+=(const Sales_data &);
 
     string isbn() const { return bookNo; }
 
@@ -40,5 +40,10 @@ istream &operator>>(istream &, Sales_data &);
 ostream &operator<<(std::ostream &, const Sales_data &);
 
 Sales_data operator+(const Sales_data &, const Sales_data &);
+
+inline double Sales_data::avg_prive() const
+{
+    return units_sold ? revenue/units_sold : 0;
+}
 
 #endif //CPPPRIMER_14_02_H
