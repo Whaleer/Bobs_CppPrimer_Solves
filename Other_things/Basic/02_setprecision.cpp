@@ -9,5 +9,6 @@ int main() {
     std::cout << "默认输出: " << number << std::endl;
     std::cout << "小数点后两位: " << std::setprecision(2) << number << std::endl;
     std::cout << "小数点后五位: " << std::setprecision(5) << number << std::endl;
+    std::cout << "小数点后五位: " << std::fixed << std::setprecision(5) << number << std::endl;
     return 0;
 }
